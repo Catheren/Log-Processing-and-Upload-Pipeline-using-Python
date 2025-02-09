@@ -39,7 +39,7 @@ def process_log(file_path):
     with open(json_filepath, "w") as json_file:
         json.dump(log_entries, json_file, indent=4)
     
-    print(f"✅ Processed {file_path} → {json_filepath}")
+    print(f" Processed {file_path} → {json_filepath}")
     return json_filepath
 
 # Function to upload JSON file to S3
@@ -47,7 +47,7 @@ def upload_to_s3(file_path):
     file_name = os.path.basename(file_path)
     s3_key = f"logs/{file_name}"
     s3.upload_file(file_path, BUCKET_NAME, s3_key)
-    print(f"✅ Uploaded {file_path} to s3://{BUCKET_NAME}/{s3_key}")
+    print(f" Uploaded {file_path} to s3://{BUCKET_NAME}/{s3_key}")
 
 # Function to handle file creation events
 def on_created(event):
@@ -55,7 +55,7 @@ def on_created(event):
         return  # Ignore directories and non-log files
     
     time.sleep(2)  # Small delay to avoid file lock issues
-    print(f"📌 New log detected: {event.src_path}")
+    print(f" New log detected: {event.src_path}")
     json_file = process_log(event.src_path)
     upload_to_s3(json_file)
 
@@ -71,7 +71,7 @@ def start_monitoring():
     observer.schedule(event_handler, LOCAL_LOG_FOLDER, recursive=False)
     observer.start()
     
-    print(f"👀 Monitoring {LOCAL_LOG_FOLDER} for new logs...")
+    print(f" Monitoring {LOCAL_LOG_FOLDER} for new logs...")
     
     try:
         while True:
