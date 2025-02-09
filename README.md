@@ -14,8 +14,7 @@ This project implements an automated log processing pipeline that monitors a dir
 	• Regular Expressions (re) (Log parsing)
 ## Project Structure
 log-processing-pipeline/
-│── logs/                 # Directory being monitored (input logs)
-│── output/               # Processed logs stored as JSON (before upload)
-│── main.py               # Main script for monitoring and processing
-│── requirements.txt      # Python dependencies
+│── logs/                 # Directory being monitored (input logs)\
+│── output/               # Processed logs stored as JSON (before upload)\
+│── main.py               # Main script for monitoring and processing\
 │── README.md             # Project documentation
